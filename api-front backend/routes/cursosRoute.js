@@ -7,5 +7,10 @@ const cursosController = require ('./../controllers/cursosControllers')
 
 router.get('/', cursosController.getCursos);
 router.get('/:id', cursosController.getCursosById);
+router.post('/', cursosController.addCursos);
+router.put('/:id', cursosController.updateCurso);
+router.delete('/:id', cursosController.deleteCursoById);
+router.get('/:id/estudiantes',cursosController.getEstudiantesDelCurso)
+
 
 module.exports = router;

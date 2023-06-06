@@ -8,8 +8,9 @@ const estudiantesController = require ('./../controllers/estudiantesController')
 router.get('/', estudiantesController.getEstudiantes);
 router.get('/:id', estudiantesController.getEstudianteById);
 router.post('/', estudiantesController.addEstudiante);
-router.put('/:id', estudiantesController.updateEstudiante)
-
+router.put('/:id', estudiantesController.updateEstudiante);
+router.delete('/:id', estudiantesController.deleteEstudianteById);
+router.get('/:id/cursos',estudiantesController.getCursosDelEstudiante)
 
 module.exports = router;
 
