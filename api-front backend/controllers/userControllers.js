@@ -27,7 +27,7 @@ exports.addUser = async (req, res) => {
         res.status(201).json({
             success: true,
             message: "el nuevo usuario ha sido agregado con exito",
-            nuevoProfesor
+            nuevoUser
         })
     }
     catch (error) {

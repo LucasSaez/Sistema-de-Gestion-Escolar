@@ -13,5 +13,7 @@ router.post('/',
     validarCampos
     ]
     ,
-    profesoresController.addProfesor
+    userControllers.addUser
 )
+
+module.exports = router;
