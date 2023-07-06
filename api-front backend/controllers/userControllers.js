@@ -23,10 +23,10 @@ exports.getUsers = async (req, res) => {
 exports.addUser = async (req, res) => {
     const nuevoUser = req.body;
     try {
-        const id = await profesoresModel.addProfesor(nuevoProfesor)
+        const id = await userModel.addUser(nuevoUser)
         res.status(201).json({
             success: true,
-            message: "ANDo",
+            message: "el nuevo usuario ha sido agregado con exito",
             nuevoProfesor
         })
     }
