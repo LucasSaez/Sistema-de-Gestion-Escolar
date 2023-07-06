@@ -22,7 +22,8 @@ class Server {
         this.app.use(cors()); //muestra en la consola
         this.app.use(morgan())
     }
-    listen(){ // le decimos que se comunique por medio de este puerto
+    listen(){ // le decimos que se comunique por medio de este puerto,che atende
+        //todas las solicitudes que vengan por este puerto
         this.app.listen(3000,()=>{
             console.log('Servidor corriendo en el puerto 3000');
         })

@@ -25,7 +25,16 @@ exports.deleteCursoById = async (id) =>{
     return rows
 } 
 exports.getEstudiantesDelCurso = async (id) => {
-    const [rows, fields] = await db.execute('SELECT estudiantes.nombre FROM estudiantes_cursos INNER JOIN estudiantes ON estudiantes_cursos.id_estudiante = estudiantes.id INNER JOIN cursos ON estudiantes_cursos.id_curso = cursos.id AND cursos.id = ?', [id]);
+    const [rows, fields] = await db.execute('SELECT estudiantes.nombre FROM estudiantes_cursos INNER JOIN estudiantes ON estudiantes_cursos.estudiante_id = estudiantes.id INNER JOIN cursos ON estudiantes_cursos.curso_id = cursos.id AND cursos.id = ?', [id]);
     console.log(rows)
+    return rows;
+}
+exports.addEstudianteAUnCurso = async (estudiante) => {
+    const [rows, fields] = await db.execute('INSERT INTO `estudiantes_cursos` VALUE ( ?, ? )', [estudiante.estudiante_id, estudiante.id]);
+    return rows;
+}
+
+exports.deleteEstudianteAUnCurso = async (estudiante) => {
+    const [rows, fields] = await db.execute('DELETE FROM `estudiantes_cursos` WHERE `estudiantes_cursos`.`estudiante_id` = ? AND `estudiantes_cursos`.`curso_id` = ?', [estudiante.estudiante_id, estudiante.id]);
     return rows;
 }

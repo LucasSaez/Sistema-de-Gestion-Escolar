@@ -126,18 +126,18 @@ exports.updateCurso = async (req, res) => {
     exports.getEstudiantesDelCurso = async (req, res) => {
         const idCursos = req.params.id;
         try {
-            const cursos = await cursosModel.getEstudiantesDelCurso(idCursos)
+            const estudiantes = await cursosModel.getEstudiantesDelCurso(idCursos)
     
-            if (cursos.length < 1) {
+            if (estudiantes.length < 1) {
                 res.status(404).json({
                     success: false,
-                    msg: `nO EXISTE: ${idCursos}`
+                    msg: `no exisen estudiantes en el curso: ${idCursos}`
                 })
     
             }
             res.status(200).json({
                 success: true,
-               cursos
+               estudiantes
     
             })
         }
@@ -150,3 +150,65 @@ exports.updateCurso = async (req, res) => {
             })
         }
     }
+
+    exports.addEstudianteAUnCurso = async (req, res) => {
+        const id = req.params.id;
+        const cursoActualizado = req.body;
+    
+        const curso = {
+            id,
+            ...cursoActualizado  //muestra todo lo que necesitamos de forma mas breve
+        }
+        console.log(curso)
+        try {
+            const listaActualizada = await cursosModel.addEstudianteAUnCurso(curso)
+            if (listaActualizada < 1) {
+                res.status(404).json({
+                    success: false,
+                    message: "datos no agragados"
+                })
+             }
+            res.status(200).json({
+                success: true,
+                message: "datos agregados",
+            curso
+            })
+         }
+         catch(error) {
+            res.status(500).json({
+                success: false,
+                message: "No anda"
+            })
+            }
+        }
+
+        exports.deleteEstudianteAUnCurso = async (req, res) => {
+            const id = req.params.id;
+            const cursoActualizado = req.body;
+        
+            const curso = {
+                id,
+                ...cursoActualizado  //muestra todo lo que necesitamos de forma mas breve
+            }
+            console.log(curso)
+            try {
+                const listaActualizada = await cursosModel.deleteEstudianteAUnCurso(curso)
+                if (listaActualizada < 1) {
+                    res.status(404).json({
+                        success: false,
+                        message: "datos no borrados"
+                    })
+                 }
+                res.status(200).json({
+                    success: true,
+                    message: "datos borrados con exito!",
+                curso
+                })
+             }
+             catch(error) {
+                res.status(500).json({
+                    success: false,
+                    message: "No anda"
+                })
+                }
+            }
